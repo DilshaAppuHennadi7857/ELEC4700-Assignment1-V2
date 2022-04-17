@@ -24,8 +24,10 @@ C.m_n = 0.26*C.m_0;                 % effective mass of electrons
 L = 200e-9;
 W = 100e-9;
 
-numElec = 8000;
+numElec = 5000;
 numDispElec = 15;
+
+numTimeStep = 500;%50;
 
 Cols = hsv(numDispElec);
 
@@ -41,11 +43,11 @@ Cols = hsv(numDispElec);
 %% 1 Electron Modeling
 %
 % First, assuming the temperature of the system is 300 K, the thermal
-% velocity of the electrons is: $$ v_{th} = \sqrt{\frac{k T}{m_n}} $$
+% velocity of the electrons is: $$ v_{th} = \sqrt{2\frac{k T}{m_n}} $$
 %
 
 T = 300;
-v_th = sqrt(3*C.kb * T/C.m_n);
+v_th = sqrt(2*C.kb * T/C.m_n);
 
 %%
 %

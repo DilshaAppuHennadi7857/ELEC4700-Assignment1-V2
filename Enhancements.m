@@ -2,7 +2,6 @@ global B
 
 % simulation time
 dt = 1e-15;
-numTimeStep = 1000;
 
 % Define boxes
 % Box 1 (top)
@@ -60,6 +59,8 @@ for t = 1:numTimeStep
         plot(xPos(n), yPos(n),'.','color',Cols(n,:))
     end
     title('Electrons as Carriers in N-type Si crystal (with Collision)')
+    xlabel('Region Length (m)')
+    ylabel('Region Width (m)')
     axis([0 L 0 W])
     hold on
     makeBox(B.Left1,B.Right1,B.Top1,B.Bottom1,L,W);
@@ -126,6 +127,9 @@ finalPos = [xPos' yPos'];
 
 figure(7)
 hist3(finalPos, 'CDataMode', 'auto', 'FaceColor', 'interp', 'Nbins', [20 20])
+xlabel('Region Length (m)')
+ylabel('Region Width (m)')
+view(2);
 
 % Plot temperature map
 % use final velocities of electrons
@@ -142,3 +146,5 @@ tempMap = tempMap';
 figure(8)
 s = pcolor(tempMap)
 s.FaceColor = 'interp';
+xlabel('Region Length (m)')
+ylabel('Region Width (m)')

@@ -21,9 +21,11 @@ dt = 1e-15;
 for t = 1:numTimeStep
     
     % determine temperature
+%     E_k = C.m_n .* (sqrt(xVel.^2 + yVel.^2).^2) ./ 2;
+%     avgE_k = sum(E_k)/numElec;
+%     expTemp(t) = (2*avgE_k)/(3*C.kb);
+%     time(t) = t*dt;
     xyAvgVel = mean(sqrt(xVel.^2 + yVel.^2));
-    expTemp(t) = (xyAvgVel^2)*(C.m_n/(2*C.kb));
-    time(t) = t*dt;
     
     figure(1)
     for n = 1:numDispElec

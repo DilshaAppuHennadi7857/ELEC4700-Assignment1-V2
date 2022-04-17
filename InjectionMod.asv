@@ -41,8 +41,8 @@ for t = 1:numTimeStep
         plot(xPos(n), yPos(n),'.','color',Cols(n,:))
     end
     title('Electrons as Carriers in N-type Si crystal (with Collision)')
-    xlabel('Region Length (m)')
-    ylabel('Region Width (m)')
+xlabel('Region Length (m)')
+ylabel('Region Width (m)')
     axis([0 L 0 W])
     hold on
     makeBox(B.Left1,B.Right1,B.Top1,B.Bottom1,L,W);

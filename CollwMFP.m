@@ -1,6 +1,5 @@
 % simulation time
 dt = 1e-15;
-numTimeStep = 1000;
 
 % assign a random x and y initial position for each electron
 % initial positions are chosen from a uniform distribution
@@ -21,7 +20,7 @@ magVel = sqrt(xVel.^2 + yVel.^2);
 figure(3)
 hist(magVel,20)
 title('Velocity Distribution')
-xlabel('Velocity')
+xlabel('Velocity (m/s)')
 
 % we also need to determine the probability of an electron scattering. This
 % is given by the function: \[P_{scat} = 1 - e^{-dt/ \tau_{mn}}\]
@@ -37,9 +36,8 @@ index = 1;
 for t = 1:numTimeStep
     
     % determine temperature
-    E_k = C.m_n .* (sqrt(xVel.^2 + yVel.^2).^2) ./ 2;
-    avgE_k = sum(E_k)/numElec;
-    expTemp(t) = (2*avgE_k)/(3*C.kb);
+    xyAvgVel = mean(sqrt(xVel.^2 + yVel.^2));
+    expTemp(t) = (xyAvgVel^2)*(C.m_n/(2*C.kb));
     time(t) = t*dt;
     
     figure(4)
@@ -47,6 +45,8 @@ for t = 1:numTimeStep
         plot(xPos(n), yPos(n),'.','color',Cols(n,:))
     end
     title('Electrons as Carriers in N-type Si crystal (with Collision)')
+    xlabel('Region Length (m)')
+    ylabel('Region Width (m)')
     axis([0 L 0 W])
     hold on
     
@@ -94,6 +94,6 @@ for i = 1:length(scatRecord)-1
     timeBetweenColl(i) = scatRecord(i+1) - scatRecord(i);
 end
 
-meanTimeBetweenColl = sum(timeBetweenColl)/length(scatRecord);
+meanTimeBetweenColl = sum(timeBetweenColl)/length(scatRecord)
 
-MFP_calc = meanTimeBetweenColl * sqrt(xVel(1)^2 + yVel(1)^2);
+MFP_calc = meanTimeBetweenColl * sqrt(xVel(1)^2 + yVel(1)^2)
